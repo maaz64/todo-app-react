@@ -5,12 +5,21 @@ import { toggleTodo, removeTodo } from "../redux/actions/todoActions";
 
 function TodoList() {
 
+  // accessing the state using useSelector hook provided by react-redux to get all the todos data
   const todos = useSelector((state) => state.todos);
-  const disptach = useDispatch();
+
+  // using useDispatch hook to dispatch our actions
+  const dispatch = useDispatch();
+
+  // function to toggle the checkbox
   const handleChechBox = (index)=>{
-    disptach(toggleTodo(index));
+
+    // dispatching toggleTodo action and with it we are sending the index of the todo that we want to toggle
+    dispatch(toggleTodo(index));
   }
 
+
+  //  creating the todo list component
   return (
    
     <div className="relative flex flex-col text-gray-700 bg-white shadow-md w-96 rounded-xl bg-clip-border mt-4">
@@ -20,9 +29,11 @@ function TodoList() {
        className= {"flex items-center w-full p-3 py-1 pl-4 pr-1 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900"}>
        <p className={todo.completed?"line-through":null}>{todo.text}</p>
        <div className="flex ml-auto place-items-center justify-self-end">
+       
             <input type="checkbox" name="toggle"  id="toggle" checked={todo.completed} onChange={()=>{handleChechBox(index)}}/>
          <button
-           onClick={() => { disptach(removeTodo(index)) }}
+        //  dispatching removeTodo action and with it we are sending the index of the todo that we want to delete
+           onClick={() => { dispatch(removeTodo(index)) }}
            className="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-blue-gray-500 transition-all hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
            type="button">
            <span className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
@@ -43,49 +54,4 @@ function TodoList() {
   );
 }
 
-export default TodoList
-
-
-
-
- // <div classNameNameName="flex justify-center items-center ">
-    //   <ul classNameNameName='max-w-2xl mt-6 bg-green-100 shadow-md rounded px-8 pt-6 pb-4'>
-    //     {todos.map((todo, index) => (
-    //       <li key={index} classNameNameName="pb-3 sm:pb-4">
-    //         <div classNameNameName="flex items-center space-x-4 rtl:space-x-reverse">
-    //           <div classNameNameName="flex-1 min-w-0">
-    //             <p classNameNameName="text-lg font-medium text-gray-900 truncate ">
-    //               {todo.text}
-    //             </p>
-    //           </div>
-    //           <div classNameNameName='flex justify-between items-center'>
-    //             {todo.completed ? <p classNameNameName='bg-green-400 text-black font-medium ml-2 border rounded-lg text-center text-wrap p-2'>Completed</p> : <p classNameNameName='bg-red-400 text-black font-medium ml-2 border rounded-lg text-center text-wrap p-2'>Pending</p>}
-
-
-    //             <button
-    //               onClick={() => { disptach(toggleTodo(index)) }}
-    //               classNameNameName="select-none rounded-lg bg-amber-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-black shadow-md shadow-amber-500/20 transition-all hover:shadow-lg hover:shadow-amber-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2"
-    //               type="button"
-    //             >
-    //               Toggle
-    //             </button>
-    //             <button
-    //               onClick={() => { disptach(removeTodo(index)) }}
-    //               classNameNameName="select-none rounded-lg bg-red-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-black shadow-md shadow-red-500/20 transition-all hover:shadow-lg hover:shadow-red-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2"
-    //               type="button"
-    //             >
-    //               Delete
-    //             </button>
-    //           </div>
-
-    //         </div>
-    //       </li>
-    //     ))}
-
-
-    //   </ul>
-    // </div>
-
-
-
-
+export default TodoList;

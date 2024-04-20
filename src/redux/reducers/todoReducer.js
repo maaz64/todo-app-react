@@ -1,6 +1,7 @@
 
 import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO } from "../actions/todoActions";
 
+// initialising the state
 const initialState={
     todos:[
         {text:"Go to Gym at 6", completed: false},
@@ -8,9 +9,12 @@ const initialState={
     ]
 }
 
+
+// creating reducers for different action
 export function todoReducer(state=initialState, action){
 
     switch(action.type){
+        // reducer for adding todo inside the array
         case ADD_TODO:
             return {
                 ...state,
@@ -23,6 +27,7 @@ export function todoReducer(state=initialState, action){
                 ]
             }
         case TOGGLE_TODO:
+            // reducer for toggling the completion of a task using index 
             return{
                 ...state,
                 todos: state.todos.map((todo, i)=>{
@@ -33,6 +38,7 @@ export function todoReducer(state=initialState, action){
                 })
             }
         case REMOVE_TODO:
+            // reducer for deleting todo from the todos array using splice method
             state.todos.splice(action.index,1)
             return{
                 ...state,

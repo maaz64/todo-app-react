@@ -28,7 +28,7 @@ function TodoForm() {
       <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="todo">
         Add Todo
       </label>
-      <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="todo" value={todoText} onChange={(e)=>{setTodoText(e.target.value)}} type="text"  />
+      <input className="shadow appearance-none border dark:text-white rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="todo" value={todoText} onChange={(e)=>{setTodoText(e.target.value)}} type="text"  />
     </div>
     <div className="flex items-center justify-between">
       <button
